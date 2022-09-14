@@ -67,9 +67,11 @@ int main(void)
         scanf("%d %d", &plist[i].xpos, &plist[i].ypos);
     }
     
-    getShortest(plist, n, min);
     getLongest(plist, n, max);
+    getShortest(plist, n, min);
 
     free(plist);
     free(min); free(max);
+
+    return 0;
 }
