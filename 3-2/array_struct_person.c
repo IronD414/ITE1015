@@ -10,43 +10,72 @@ struct person *next;
 };
 typedef struct person Person;
 
+void freePeople(Person* node)
+{
+	Person* temp;
+	while (node != NULL)
+	{
+		temp = node;
+		node = node->next;
+		free(temp);
+	}
+}
+
 void addPerson(Person* header, char* name, int age)
 {
-	Person* pointing = header->next;
-	while(pointing != NULL)
-	{
-		pointing = (*pointing).next;
-	}
-	Person newPerson;
-	strcpy(newPerson.name, name); newPerson.age = age;
-	pointing = &newPerson;
+	strcpy(header->name, name);
+	header->age = age;
 }
 
 void increaseAge(Person* header)
 {
-	Person* pointing = header->next;
-	while(pointing != NULL)
+	Person* temp;
+	while (header != NULL)
 	{
-		pointing = (*pointing).next;
-		printf("Name:%s, Age:%d\n", (*pointing).name, ++(*pointing).age);
+		temp = header;
+		printf("Name:%s, Age:%d\n", temp->name, ++(temp->age));
+		header = header->next;
 	}
 }
 
 int main(void)
 {
-	int n;
-	Person nullPerson;
-	do
-	{
-		scanf("%d", &n);  // get the number of people from user
+	int n = 1;
+	Person* head = NULL;
+	Person* tail = NULL;
+	Person* node;
 
-		for (int i = 0; i < n; ++i)
+	while (n > 0)
+	{
+		scanf("%d", &n);
+		if (n > 0)
 		{
-			char* input_name; int input_age;
-			scanf(" %s %d", input_name, &input_age);
-			addPerson(&nullPerson, input_name, input_age);
+			for (int i = 0; i < n; ++i)
+			{
+				char name[10]; int age;
+				node = (Person*) malloc(sizeof(Person));
+				scanf("%s %d", name, &age);
+				addPerson(node, name, age);
+
+				if (head == NULL)
+				{
+					head = node;
+				}
+				else
+				{
+					tail->next = node;
+				}
+
+				tail = node;
+			}
 		}
-	} while (n != 0);
-// call function to increase the age for each person and print them
-	increaseAge(&nullPerson);
+		else
+		{
+			increaseAge(head);
+		}
+	}
+
+	freePeople(head);
+
+	return 0;
 }
