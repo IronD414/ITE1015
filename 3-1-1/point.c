@@ -41,7 +41,7 @@ int main(void)
 
 
 	// terminate functions
-	getScale2xPoint(p_p1, p1_3); getScale2xPoint(p_p2, p2_3);
+	getScalePoint(p_p1, p1_3); getScalePoint(p_p2, p2_3);
 	swapPoints(p_p1, p_p2);
 
 	// printing domain
