@@ -7,9 +7,9 @@ int xpos;
 int ypos;
 }Point;
 
-Point getScale2xPoint(Point* p, int s)
+Point getScalePoint(Point* p, int s)
 {
-	printf("Calling getScale2xPoint() for (%d, %d)\n", (*p).xpos, (*p).ypos);
+	printf("Calling getScalePoint() for (%d, %d)\n", (*p).xpos, (*p).ypos);
 	(*p).xpos *= s;
 	(*p).ypos *= s;
 	return (*p);
