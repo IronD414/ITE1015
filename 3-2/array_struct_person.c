@@ -10,17 +10,6 @@ struct person *next;
 };
 typedef struct person Person;
 
-void freePeople(Person* node)
-{
-	Person* temp;
-	while (node != NULL)
-	{
-		temp = node;
-		node = node->next;
-		free(temp);
-	}
-}
-
 void addPerson(Person* header, char* name, int age)
 {
 	strcpy(header->name, name);
@@ -74,8 +63,13 @@ int main(void)
 			increaseAge(head);
 		}
 	}
-
-	freePeople(head);
+	Person* temp;
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp);
+	}
 
 	return 0;
 }
