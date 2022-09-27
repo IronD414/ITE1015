@@ -5,6 +5,7 @@ class Animal
 public:
     Animal();
 	Animal(std::string _name, int _age);
+	void printInfo(){};
 	void printAnimal();
 
 protected:

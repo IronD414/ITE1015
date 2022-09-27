@@ -8,7 +8,7 @@ Animal::Animal(string _name, int _age)
 
 void Animal::printAnimal()
 {
-	cout << "Name: " << this->name << ", Age: " << this->age << endl;
+	cout << "Name: " << this->name << ", Age: " << this->age;
 }
 
 Zebra::Zebra(string _name, int _age, int _numStripes)
@@ -19,5 +19,6 @@ Zebra::Zebra(string _name, int _age, int _numStripes)
 
 void Zebra::printZebra()
 {
-	cout << "Name: " << this->name << ", Age: " << this->age << ", Number of stripes: " << this->numStripes <<endl;
+	printAnimal();
+	cout << ", Number of stripes: " << this->numStripes << endl;
 }
