@@ -10,10 +10,18 @@ int main()
 	while (1)
 	{
 		after = str.find(',', before);
-		new_str += str.substr(before, after - before);
-		new_str += "\n";
+		if (after > before)
+		{
+			new_str += str.substr(before, after - before);
+			new_str += "\n";
+		}
 		if (str.find(',', before) == str.npos)
 		{
+		    if (before < str.length())
+		    {
+		        new_str += str.substr(before, str.length() - before);
+		        new_str += "\n";
+		    }
 		    break;
 		}
 		before = after + 1;
