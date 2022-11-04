@@ -4,32 +4,13 @@
 
 using namespace std;
 
-bool getMatch(string s)
-{
-	stack<int> prts;
-	for (int i = 0; i < s.length(); ++i)
-	{
-		if (s[i] == '(')
-		{
-			prts.push(1);	
-		}else if (s[i] == ')')
-		{
-			if (prts.empty())
-			{
-				return false;
-			}else
-			{
-				prts.pop();
-			}
-		}
-	}
-	return prts.empty();
-}
-
 int main()
 {
 	char input = ' ';
 	string expression;
+	bool result = true;
+
+	stack<int> prts;
 
 	while (1)
 	{
@@ -39,8 +20,22 @@ int main()
 		{
 		    getline(cin, expression, ' ');
 			getline(cin, expression);
-			auto result = getMatch(expression) ? "matched" : "not matched";
-			cout << result << endl;
+			
+			for (int i = 0; i < expression.length(); ++i)
+			{
+				if (expression[i] == '(') prts.push(1);	
+				else if (expression[i] == ')')
+				{
+					if (prts.empty()) result = false;
+					else prts.pop();
+				}
+			}
+			if (result) result = prts.empty();
+
+			if (result) cout << "matched" << endl;
+			else cout << "not matched" << endl;
+
+			while (!prts.empty()) prts.pop();
 		}else if (input == 'q') break;
 	}
 
