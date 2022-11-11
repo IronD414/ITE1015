@@ -1,7 +1,7 @@
 #include "my_vector.h"
 
 // Implement constructor & destructor
-MyVector::MyVector(){}
+MyVector::MyVector(): length(0), a(nullptr){}
 MyVector::MyVector(int length)
 {
 	this->a = new double[length];
@@ -16,15 +16,12 @@ MyVector& MyVector::operator=(const MyVector& b)
 {
 	if (this->length != b.length)
 	{
+	    this->a = new double[b.length];
 		this->length = b.length;
-		this->a = b.a;
 	}
-	else
+	for (int i = 0; i < b.length; ++i)
 	{
-		for (int i = 0; i < b.length; ++i)
-		{
-			this->a[i] = b.a[i];
-		}
+		this->a[i] = b.a[i];
 	}
 	return *this;
 }
